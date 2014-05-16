@@ -1,0 +1,26 @@
+create USER master with password 'master123';  --Cria usuários
+create user comum1 with password '123';
+create user comum2 with password '456';
+
+create tablespace "t_user" OWNER  master LOCATION  '/var/lib/postgresql/9.1/main';  --Cria tablespace no local ''/var/lib/postgresql/9.1/main''
+ALTER TABLE telefone SET TABLESPACE t_user;  --Altera tabela telefone para tablespace criada
+CREATE SCHEMA esquema;  --cria esquema
+GRANT USAGE on SCHEMA esquema to master;  --habilita uso do esquema
+SET search_path to esquema;  --seta search_path
+GRANT ALL privileges on 
+	all tables in schema esquema to master;   --altera privilegios para os usuários
+
+GRANT SELECT on
+	all tables in schema esquema  to comum1;
+
+GRANT SELECT,UPDATE on
+	all tables in schema esquema to comum2;
+
+
+
+alter USER master set search_path to esquema;   --Define esquema padrão para os usuários
+alter USER comum1 set search_path to esquema;
+alter USER comum2 set search_path to esquema;
+
+
+
