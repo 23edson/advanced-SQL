@@ -28,5 +28,12 @@ select s.nome,s.cpf,s.tipo,s.preco,s.dthorag,s.chassi,c.nome,c.cpf from
 (esquema.funcionario f natural join esquema.svfunc natural join esquema.servico natural join esquema.carro)s 
 join esquema.cliente c on (s.dono=c.cpf);
 
+<<<<<<< HEAD
 create view car_marca( marca, qtd) as
 	select nome, count(*) from fabricante natural join carro group by nome;    --contagem de carros por fabricante
+=======
+create view esquema.carporcli(nome_cliente,cpf_cli,qt_caros) as 
+select nome,cpf,count(chassi) from esquema.carro r join esquema.cliente c on dono=cpf 
+group by nome,cpf;
+
+>>>>>>> ff016e82f8af5f6031871add17f950a97efd6390
