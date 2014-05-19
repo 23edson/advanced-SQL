@@ -22,6 +22,5 @@ alter USER master set search_path to esquema;   --Define esquema padrão para os
 alter USER comum1 set search_path to esquema;
 alter USER comum2 set search_path to esquema;
 
-create view car_marca( marca, qtd) as
-	select nome, count(*) from fabricante natural join carro group by nome;
+
 

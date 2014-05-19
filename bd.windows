@@ -27,3 +27,6 @@ create view esquema.funporcli (nome_funci,cpf_func,tipo_serv,preco,horario,chass
 select s.nome,s.cpf,s.tipo,s.preco,s.dthorag,s.chassi,c.nome,c.cpf from 
 (esquema.funcionario f natural join esquema.svfunc natural join esquema.servico natural join esquema.carro)s 
 join esquema.cliente c on (s.dono=c.cpf);
+
+create view car_marca( marca, qtd) as
+	select nome, count(*) from fabricante natural join carro group by nome;    --contagem de carros por fabricante
