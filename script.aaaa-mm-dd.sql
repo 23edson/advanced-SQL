@@ -54,6 +54,7 @@ create table peca (
 	descr varchar(50) not null,
 	qtd integer not null,
 	preco varchar(10) not null,
+	categoria varchar(20) not null,
 	constraint pk_peca primary key(codpeca),
 	constraint fk_fab foreign key(idfab) references fabricante(idfab)
 );
@@ -130,43 +131,43 @@ insert into carro (chassi,idfab,anofab,modelo,dono) values
 			('77jjqw554x258',8,2010,'Clio','819211');
 
 insert into funcionario (cpf,nome,funcao) values
-			('112211','Maria','Vendedora'),
+			('112211','Maria','Vendedor(a)'),
 			('214155','Julia','Secretaria'),
 			('314522','Carlos','Mecanico'),
 			('221587','Marcos','Mecanico'),
 			('552184','Luiz','Montador'),
-			('331548','Pedro F','Vendedor'),
+			('331548','Pedro F','Vendedor(a)'),
 			('668452','Marcio','Pintor Automotivo'),
 			('991232','Joao','Pintor Automotivo'),
 			('115483','Clara','Manobrista'),
 			('775217','Marcelo','Manobrista');
 			
-insert into peca (codpeca,idfab,descr,qtd,preco) values
-			(12,1,'Roda Aluminio 17',20,'450,00'),
-			(13,1,'Parabrisa',17,'300,00'),
-			(14,1,'Volante esportivo',40,'100,00'),
-			(15,2,'Oleo Dexos',55,'70,00'),
-			(16,2,'Kit embreagem',25,'250,00'),
-			(17,3,'Tinta Prata',10,'500,00'),
-			(18,4,'Oleo p motor',20,'150,00'),
-			(19,5,'Protetor Carter',50,'60,00'),
-			(20,6,'Filtro combustivel',23,'200,00'),
-			(21,8,'Defletor Carter',5,'190,00'),
-			(22,7,'Caixa de Cambio',10,'700,00');
+insert into peca (codpeca,idfab,descr,qtd,preco,categoria) values
+			(12,1,'Roda Aluminio 17',20,'450,00','Acessorios'),
+			(13,1,'Parabrisa',17,'300,00','Acessorios'),
+			(14,1,'Volante esportivo',40,'100,00','Acessorios'),
+			(15,2,'Oleo Dexos',55,'70,00','Peca'),
+			(16,2,'Kit embreagem',25,'250,00','Peca'),
+			(17,3,'Tinta',10,'500,00','Peca'),
+			(18,4,'Oleo p motor',20,'150,00','Peca'),
+			(19,5,'Protetor Carter',50,'60,00','Peca'),
+			(20,6,'Filtro combustivel',23,'200,00','Peca'),
+			(21,8,'Defletor Carter',5,'190,00','Peca'),
+			(22,7,'Caixa de Cambio',10,'700,00','Peca');
 
 insert into servico (idsv,codpeca,chassi,tipo,preco,dthorag) values
 			(1,12,'555nh33534ff2','Instalacao','500,00','2013-05-11 10:00'),
 			(2,12,'66ddf555www62','Instalacao','500,00','2013-05-12 15:00'),
-			(3,13,'66ddf555www62','Troca','400,00','2013-05-12 15:00'),
-			(4,14,'66ddf555www62','Troca','200,00','2013-05-12 15:00'),
-			(5,15,'23125la55vo11','Troca','100,00','2013-07-07 08:00'),
-			(6,15,'23125la55vo11','Troca','100,00','2013-02-09 09:00'),
-			(7,16,'ll55458ffa212','Troca','250,00','2012-05-04 11:00'),
-			(8,16,'ll55458ffa212','Troca','350,00','2013-09-02 16:00'),
+			(3,13,'66ddf555www62','Reposicao','400,00','2013-05-12 15:00'),
+			(4,14,'66ddf555www62','Reposicao','200,00','2013-05-12 15:00'),
+			(5,15,'23125la55vo11','Reposicao','100,00','2013-07-07 08:00'),
+			(6,15,'23125la55vo11','Reposicao','100,00','2013-02-09 09:00'),
+			(7,16,'ll55458ffa212','Reposicao','250,00','2012-05-04 11:00'),
+			(8,16,'ll55458ffa212','Reposicao','350,00','2013-09-02 16:00'),
 			(9,18,'oo2021vb26741','Reposicao','200,00','2013-12-11 15:00'),
 			(10,19,'nn65df555512s','Instalacao','100,00','2013-10-04 17:00'),
-			(11,21,'kk8080dfww101','Troca','250,00','2014-02-01 13:00'),
-			(12,22,'22ds1223ffvb1','Troca','1000,00','2014-03-01 14:00');
+			(11,21,'kk8080dfww101','Reposicao','250,00','2014-02-01 13:00'),
+			(12,22,'22ds1223ffvb1','Reposicao','1000,00','2014-03-01 14:00');
 insert into svfunc(cpf,idsv,dthorag) values
 			('112211',1,'2013-05-11 10:00'),('112211',2,'2013-05-12 15:00'),
 			('112211',3,'2013-05-12 15:00'),('331548',4,'2013-05-12 15:00'),

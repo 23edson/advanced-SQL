@@ -23,10 +23,10 @@ alter USER comum1 set search_path to esquema;
 alter USER comum2 set search_path to esquema;
 
 
-create view esquema.funporcli (nome_funci,cpf_func,tipo_serv,preco,horario,chassi_car,nome_cli,cpf_cli) as 
+create view funporcli (nome_funci,cpf_func,tipo_serv,preco,horario,chassi_car,nome_cli,cpf_cli) as 
 select s.nome,s.cpf,s.tipo,s.preco,s.dthorag,s.chassi,c.nome,c.cpf from 
-(esquema.funcionario f natural join esquema.svfunc natural join esquema.servico natural join esquema.carro)s 
-join esquema.cliente c on (s.dono=c.cpf);
+(funcionario f natural join svfunc natural join servico natural join carro)s 
+join cliente c on (s.dono=c.cpf);
 
 <<<<<<< HEAD
 create view car_marca( marca, qtd) as
