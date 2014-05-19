@@ -25,3 +25,11 @@ alter USER comum2 set search_path to esquema;
 create view car_marca( marca, qtd) as
 	select nome, count(*) from fabricante natural join carro group by nome;
 
+create view funporcli (nome_funci,cpf_func,tipo_serv,preco,horario,chassi_car,nome_cli,cpf_cli) as 
+select s.nome,s.cpf,s.tipo,s.preco,s.dthorag,s.chassi,c.nome,c.cpf from 
+(funcionario f natural join svfunc natural join servico natural join carro)s 
+join cliente c on (s.dono=c.cpf);
+
+create view carporcli(nome_cliente,cpf_cli,qt_caros) as 
+select nome,cpf,count(chassi) from carro r join cliente c on dono=cpf 
+group by nome,cpf;
