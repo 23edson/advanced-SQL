@@ -167,7 +167,7 @@ insert into servico (idsv,codpeca,chassi,tipo,preco,dthorag) values
 			(9,18,'oo2021vb26741','Reposicao','200,00','12-11-2013 15:00'),
 			(10,19,'nn65df555512s','Instalacao','100,00','10-04-2013 17:00'),
 			(11,21,'kk8080dfww101','Reposicao','250,00','02-01-2014 13:00'),
-			(12,22,'22ds1223ffvb1','Reposicao','1000,00','03-01-2014 14:00');
+			
 			
 insert into svfunc(cpf,idsv,dthorag) values
 			('112211',1,'05-11-2013 10:00'),('112211',2,'05-12-2013 15:00'),
