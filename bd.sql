@@ -7,11 +7,14 @@ create USER master with password 'master123';  --Cria usuários
 create user comum1 with password '123';
 create user comum2 with password '456';
 --apos criar as tablespaces
-create tablespace "t_user" OWNER  master LOCATION  'c:\var';  --Cria tablespace no local ''/var/lib/postgresql/9.1/main''
-create tablespace "tel_use" OWNER master LOCATION 'c:\var\1';
+create tablespace "t_user" OWNER  master LOCATION  '/var/lib/postgresql/9.1/main';
+--create tablespace "t_user" OWNER  master LOCATION  'c:\var';  --Cria tablespace no local ''c:\var'' para windows tenha certeza de que esta pasta exista caso contrario este comando não funcionara                      
+create tablespace "tel_use" OWNER  master LOCATION  '/var/lib/postgresql/9.1/';
+-- create tablespace "tel_use" OWNER master LOCATION 'c:\var\1'; --Cria tablespace no local ''c:\var\1'' para windows tenha certeza de que esta pasta exista caso contrario este comando não funcionara
 --o database
 create database autopecas tablespace t_user;
---conectar ao banco autopecas como super usuario
+--até aqui fora do banco;
+--agora conectar ao banco autopecas como super usuario
 CREATE SCHEMA esquema;  --cria esquema
 alter database autopecas set search_path to esquema;
 GRANT USAGE on SCHEMA esquema to master;  --habilita uso do esquema
@@ -28,8 +31,6 @@ GRANT SELECT,UPDATE on
 alter USER master set search_path to esquema;   --Define esquema padrão para os usuários
 alter USER comum1 set search_path to esquema;
 alter USER comum2 set search_path to esquema;
-
-\c autopecas master; --conecta como usuario master
 
 drop table esquema.svfunc cascade;
 drop table esquema.servico cascade;
@@ -278,7 +279,7 @@ insert into esquema.peca (codpeca,idfab,descr,qtd,preco,categoria) values
 			(20,6,'Filtro combustivel',23,'200,00','Peca'),
 			(21,8,'Defletor Carter',5,'190,00','Peca'),
 			(22,7,'Caixa de Cambio',10,'700,00','Peca');
-
+--aqui é para formato aaaa-mm-dd													pause aqui
 insert into esquema.servico (idsv,codpeca,chassi,tipo,preco,dthorag) values
 			(1,12,'555nh33534ff2','Instalacao','500,00','2013-05-11 10:00'),
 			(2,12,'66ddf555www62','Instalacao','500,00','2013-05-12 15:00'),
@@ -304,3 +305,30 @@ insert into esquema.svfunc(cpf,idsv,dthorag) values
 			('221587',9,'2013-12-11 15:00'),('221587',5,'2013-07-07 08:00'),
 			('221587',6,'2013-02-09 09:00'),('552184',1,'2013-05-11 10:00'),
 			('552184',2,'2013-05-12- 15:00'),('552184',10,'2013-10-04 17:00');
+--aqui é formato normal dd-mm-aaaa															pause aqui
+insert into servico (idsv,codpeca,chassi,tipo,preco,dthorag) values
+			(1,12,'555nh33534ff2','Instalacao','500,00','05-11-2013 10:00'),
+			(2,12,'66ddf555www62','Instalacao','500,00','05-12-2013 15:00'),
+			(3,13,'66ddf555www62','Reposicao','400,00','05-12-2013 15:00'),
+			(4,14,'66ddf555www62','Reposicao','200,00','05-12-2013 15:00'),
+			(5,15,'23125la55vo11','Reposicao','100,00','07-07-2013 08:00'),
+			(6,15,'23125la55vo11','Reposicao','100,00','02-09-2013 09:00'),
+			(7,16,'ll55458ffa212','Reposicao','250,00','05-04-2012 11:00'),
+			(8,16,'ll55458ffa212','Reposicao','350,00','09-02-2013 16:00'),
+			(9,18,'oo2021vb26741','Reposicao','200,00','12-11-2013 15:00'),
+			(10,19,'nn65df555512s','Instalacao','100,00','10-04-2013 17:00'),
+			(11,21,'kk8080dfww101','Reposicao','250,00','02-01-2014 13:00'),
+			(12,22,'22ds1223ffvb1','Reposicao','1000,00','03-01-2014 14:00');
+			
+insert into svfunc(cpf,idsv,dthorag) values
+			('112211',1,'05-11-2013 10:00'),('112211',2,'05-12-2013 15:00'),
+			('112211',3,'05-12-2013 15:00'),('331548',4,'05-12-2013 15:00'),
+			('331548',5,'07-07-2013 08:00'),('331548',6,'02-09-2013 09:00'),
+			('331548',7,'05-04-2012 11:00'),('112211',8,'09-02-2013 16:00'),
+			('112211',9,'12-11-2013 15:00'),('112211',10,'10-04-2013 17:00'),
+			('331548',11,'02-01-2014 13:00'),('331548',12,'03-01-2014 14:00'),
+			('314522',7,'05-04-2012 11:00'),('314522',8,'09-02-2013 16:00'),
+			('221587',11,'02-01-2014 13:00'),('221587',12,'03-01-2014 14:00'),
+			('221587',9,'12-11-2013 15:00'),('221587',5,'07-07-2013 08:00'),
+			('221587',6,'02-09-2013 09:00'),('552184',1,'05-11-2013 10:00'),
+			('552184',2,'05-12-2013 15:00'),('552184',10,'10-04-2013 17:00');
